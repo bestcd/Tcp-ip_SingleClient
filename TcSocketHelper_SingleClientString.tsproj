@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.65">
+	<Project SccProjectName="SAK" SccAuxPath="SAK" SccLocalPath="SAK" SccProvider="SAK" ProjectGUID="{A20FE532-AB49-4B87-A7AA-5A0B3FEF2B9C}" Target64Bit="true" ShowHideConfigurations="#x6">
+		<System>
+			<Licenses>
+				<Target>
+					<ManualSelect>{3EBB9639-5FF3-42B6-8847-35C70DC013C8}</ManualSelect>
+				</Target>
+			</Licenses>
+			<Tasks>
+				<Task Id="1" Priority="20" CycleTime="100000" AmsPort="350">
+					<Name>PlcTaskClient</Name>
+				</Task>
+				<Task Id="4" Priority="10" CycleTime="80000" AmsPort="301">
+					<Name>ProfinetTask </Name>
+					<Vars VarGrpType="1" InsertType="1">
+						<Name>Inputs</Name>
+					</Vars>
+					<Vars VarGrpType="2" InsertType="1">
+						<Name>Outputs</Name>
+					</Vars>
+					<Image Id="2" AddrType="1" ImageType="1">
+						<Name>ProfinetTask -Image</Name>
+					</Image>
+				</Task>
+			</Tasks>
+		</System>
+		<Plc>
+			<Project GUID="{DD8631DC-86FF-4470-B21C-EE641D0E2D54}" Name="TcSocketHelper_SingleClientString" PrjFilePath="TcSocketHelper_SingleClientString\TcSocketHelper_SingleClientString.plcproj" TmcFilePath="TcSocketHelper_SingleClientString\TcSocketHelper_SingleClientString.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x0002">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" TmcPath="TcSocketHelper_SingleClientString\TcSocketHelper_SingleClientString.tmc" TmcHash="{50EC8C9B-49F7-7745-C203-68BBF245466C}">
+					<Name>TcSocketHelper_SingleClientString Instance</Name>
+					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+					<Contexts>
+						<Context>
+							<Id>0</Id>
+							<Name>PlcTaskClient</Name>
+							<ManualConfig>
+								<OTCID>#x02010010</OTCID>
+							</ManualConfig>
+							<Priority>20</Priority>
+							<CycleTime>10000000</CycleTime>
+						</Context>
+					</Contexts>
+					<TaskPouOids>
+						<TaskPouOid Prio="20" OTCID="#x08502001"/>
+					</TaskPouOids>
+				</Instance>
+			</Project>
+		</Plc>
+		<Io>
+			<Device Id="1" Disabled="true" DevType="115" AmsPort="28673" AmsNetId="10.200.74.131.2.1" RemoteName="Device 1 (Profinet Device)">
+				<Name>Device 1 (Profinet Device)</Name>
+				<DevData>000000000000000000000000000000005c4445564943455c7b43414134373636372d373030342d343346362d394437382d3239464238384143314435467d000000000000000001003c00a8c000ffffff98fc84e71d7c040000000000000000000000000000000000000000000000000000000000000000000000000000000000</DevData>
+				<Image Id="1" AddrType="1" ImageType="3" SizeIn="2" SizeOut="2">
+					<Name>Image</Name>
+				</Image>
+				<Box Id="1" BoxType="9123">
+					<Name>tcpniodevice</Name>
+					<Comment><![CDATA[GSDML Name: GSDML-V2.44-beckhoff-TCPNDevice-20240402.xml
+Path: $(TWINCAT3DIR)Config\Io\Profinet\
+VendorName: Beckhoff Automation
+OrderNumber: TwinCAT PN Device
+HW Release Version: 1
+SW Release Version: V1.00]]></Comment>
+					<ImageId>107</ImageId>
+					<Vars VarGrpType="1">
+						<Name>Inputs</Name>
+						<Var>
+							<Name>PnIoBoxState</Name>
+							<Comment><![CDATA[0x0001 = Device is in I/O exchange
+0x0002 = Device is blinking
+0x0004 = Provider State -> 0 = Stop, 1 = Run
+0x0008 = Problem Indicator -> 0 = OK, 1 = Error
+]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="2">
+						<Name>Outputs</Name>
+						<Var>
+							<Name>PnIoBoxCtrl</Name>
+							<Comment><![CDATA[0x00XX = Last two hex characters of station name
+]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+					</Vars>
+					<Profinet DeviceId="33" VendorId="288" FrameOffset="49152" ProtocolType="4" BoxOnDeviceTyp="115" MaxPhysSlotNr="255" AvailableSlots="0..255" InstanceServerPort="50000" InstanceClientPort="50001" InstanceNumberOfARs="5" InstanceNumberOfAPIs="1" MinDeviceInterval="32" NrOfGsdmlDap="2" SavePnIoBoxValues="0d00" BoxTypeInfo="TwinCAT PLC PROFINET I/O Device with I/Os, V2.3, 1 port" MacAdd5="124" GSDMLPath="$(TWINCAT3DIR)Config\Io\Profinet\GSDML-V2.44-beckhoff-TCPNDevice-20240402.xml" ImagePath="C:\TwinCAT\3.1\Config\Io\Profinet\GSDML-0120-0021-TCPNDevice.bmp" MainFamily="I/O" ProductFamily="TwinCAT Profinet I/O" OrderNr="TwinCAT PN Device" DefaultDNSName="tcpniodevice" VendorName="Beckhoff Automation" FamDescription="TwinCAT products" GraphicFile="GSDML-0120-0021-TCPNDevice" SWVersion="V1.00" HWVersion="1" AltLanguage="7">
+						<GsdmlValue HelpInfo="disable or enable" Id="Disabled_Enabled" Content="00000100">
+							<RecordText>disabled</RecordText>
+							<RecordText>enabled</RecordText>
+						</GsdmlValue>
+						<UsedGsdmlModule ModuleIdentNumber="2" ModuleName="DAP Module" InfoText="TwinCAT PLC PROFINET I/O Device with I/Os, V2.3, 1 port" OrderNumber="TwinCAT PN Device">
+							<Slot>0</Slot>
+						</UsedGsdmlModule>
+						<UsedGsdmlSubModule SubModuleIdentNumber="1" SubSlotNumber="1" TypeOfSubmodule="3" Id="DAP 2" SubModuleName="TwinCAT Device V2.3, 1 Port" InfoText="TwinCAT PLC PROFINET I/O Device with I/Os, V2.3, 1 port">
+							<Record Name="Device parameters" Length="4" Index="4096">
+								<ConstData>0</ConstData>
+								<ConstData>1</ConstData>
+								<ConstData>0</ConstData>
+								<ConstData>0</ConstData>
+								<RecordDataDef Name="Dummy for certification" DataType="Bit" MaxAllowedValue="1" ByteOffset="3" BitLength="1" Visible="true" Changeable="true" ValueItemTarget="Disabled_Enabled"/>
+							</Record>
+						</UsedGsdmlSubModule>
+						<API Id="1">
+							<Name>API</Name>
+							<ImageId>4</ImageId>
+							<Module Id="#x031d0001" DAP="true" ModuleIdentNumber="2" ModuleInfo="TwinCAT PLC PROFINET I/O Device with I/Os, V2.3, 1 port">
+								<Name>Term 1 (DAP Module)</Name>
+								<Comment><![CDATA[GSDML: GSDML-V2.44-beckhoff-TCPNDevice-20240402.xml
+Module Info: TwinCAT PLC PROFINET I/O Device with I/Os, V2.3, 1 port
+OrderNumber: TwinCAT PN Device]]></Comment>
+								<ImageId>182</ImageId>
+								<SubModule Id="#x031c0001" SubModuleIdentNumber="1" TypeOfSubModule="3" SubSlotNumber="1" IsFixSubmodule="true" SubModuleID="DAP 2" AddSubModFlags="60">
+									<Name>Subterm 1 (TwinCAT Device V2.3, 1 Port)</Name>
+									<Comment><![CDATA[GSDML: GSDML-V2.44-beckhoff-TCPNDevice-20240402.xml
+Submodule Info: TwinCAT PLC PROFINET I/O Device with I/Os, V2.3, 1 port
+]]></Comment>
+									<ImageId>183</ImageId>
+									<Record Length="4" Index="4096" ConstData="00010000"/>
+									<Vars VarGrpType="1">
+										<Name>Inputs</Name>
+									</Vars>
+									<Vars VarGrpType="2">
+										<Name>Outputs</Name>
+									</Vars>
+								</SubModule>
+								<SubModule Id="#x031c0002" SubModuleIdentNumber="32768" TypeOfSubModule="1" SubSlotNumber="32768" IsFixSubmodule="true" SubModuleID="IDS_2I" InterfaceData="0100000000000000000000000000000000000000000000000300000000000000">
+									<Name>Subterm 2 (Interface)</Name>
+									<Comment><![CDATA[GSDML: GSDML-V2.44-beckhoff-TCPNDevice-20240402.xml
+]]></Comment>
+									<ImageId>183</ImageId>
+									<Vars VarGrpType="1">
+										<Name>Inputs</Name>
+									</Vars>
+									<Vars VarGrpType="2">
+										<Name>Outputs</Name>
+									</Vars>
+								</SubModule>
+								<SubModule Id="#x031c0003" SubModuleIdentNumber="32769" TypeOfSubModule="2" SubSlotNumber="32769" IsFixSubmodule="true" SubModuleID="IDS_2P" PortData="00000000000000000000000000000000000000000000000000000000">
+									<Name>Subterm 3 (Port 1)</Name>
+									<Comment><![CDATA[GSDML: GSDML-V2.44-beckhoff-TCPNDevice-20240402.xml
+]]></Comment>
+									<ImageId>183</ImageId>
+									<Vars VarGrpType="1">
+										<Name>Inputs</Name>
+									</Vars>
+									<Vars VarGrpType="2">
+										<Name>Outputs</Name>
+									</Vars>
+								</SubModule>
+							</Module>
+						</API>
+					</Profinet>
+				</Box>
+				<Profinet PLCPortNr="851" AddPortCount="1">
+					<Ethernet DeviceDesc="Ethernet (Realtek USB GbE Family Controller)" SpecialTask="true" TaskPort="301"/>
+				</Profinet>
+			</Device>
+		</Io>
+	</Project>
+</TcSmProject>
